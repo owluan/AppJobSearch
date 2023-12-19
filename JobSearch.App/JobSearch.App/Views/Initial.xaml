@@ -51,8 +51,8 @@
             <Label>
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="2 resultados em " Style="{StaticResource JobTitleLabel}" />
-                        <Span Text="Maceió, AL" Style="{StaticResource CompanyCityStateLabel}" />
+                        <Span Text="2 resultados em " Style="{StaticResource TextPrimary}" />
+                        <Span Text="Maceió, AL" Style="{StaticResource TextSecondary}" />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
@@ -72,9 +72,9 @@
                         <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <Label Text="Digital Ocean" Style="{StaticResource CompanyCityStateLabel}" Grid.ColumnSpan="2" />
-                    <Label Text="Back-End Developer" Style="{StaticResource JobTitleLabel}" Grid.Row="1" />
-                    <Label Text="Maceió, AL" Style="{StaticResource CompanyCityStateLabel}" Grid.Row="2" />
+                    <Label Text="Digital Ocean" Style="{StaticResource TextSecondary}" Grid.ColumnSpan="2" />
+                    <Label Text="Back-End Developer" Style="{StaticResource TextPrimary}" Grid.Row="1" />
+                    <Label Text="Maceió, AL" Style="{StaticResource TextSecondary}" Grid.Row="2" />
                     <Label Text="Tags" Grid.Row="3" />
 
                     <Label Grid.Row="1" Grid.Column="1">

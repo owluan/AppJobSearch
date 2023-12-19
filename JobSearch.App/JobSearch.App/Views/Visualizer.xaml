@@ -29,9 +29,9 @@
                             <RowDefinition />
                             <RowDefinition />
                         </Grid.RowDefinitions>
-                        <Label Text="Digital Ocean" Style="{StaticResource CompanyCityStateLabel}" />
-                        <Label Text="Back-End Developer" Style="{StaticResource JobTitleLabel}" Grid.Row="1" />
-                        <Label Text="Maceió, AL" Style="{StaticResource CompanyCityStateLabel}" Grid.Row="2" />
+                        <Label Text="Digital Ocean" Style="{StaticResource TextSecondary}" />
+                        <Label Text="Back-End Developer" Style="{StaticResource TextPrimary}" Grid.Row="1" />
+                        <Label Text="Maceió, AL" Style="{StaticResource TextSecondary}" Grid.Row="2" />
                         <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
                             <Label.FormattedText>
                                 <FormattedString>
@@ -40,10 +40,10 @@
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-                        <Label Text="CLT" Style="{StaticResource JobTitleLabel}" Grid.Row="4" />
+                        <Label Text="CLT" Style="{StaticResource TextPrimary}" Grid.Row="4" />
                         <Label Text="Tags" Grid.Row="5" />
 
-                        <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="End" Style="{StaticResource JobTitleLabel}">
+                        <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="End" Style="{StaticResource TextPrimary}">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="Pub. " />
@@ -62,15 +62,15 @@
                         </Label>
                     </Grid>
 
-                    <Label Style="{StaticResource JobTitleLabel}" Text="Interessados enviar email para:" />
-                    <Label Style="{StaticResource CompanyCityStateLabel}" Text="job@digitalocean.com.br" />
+                    <Label Style="{StaticResource TextPrimary}" Text="Interessados enviar email para:" />
+                    <Label Style="{StaticResource TextSecondary}" Text="job@digitalocean.com.br" />
                     <BoxView Color="#F3F5F7" HeightRequest="1" />
-                    <Label Style="{StaticResource MoneyLabel}" Text="Descrição da Empresa" />
-                    <Label Style="{StaticResource JobTitleLabel}" Text="A DigitalOcean, Inc. é uma provedora americana de infraestrutura em nuvem com sede na cidade de Nova York e data centers em todo o mundo. A DigitalOcean fornece aos desenvolvedores serviços em nuvem que ajudam a implantar e dimensionar aplicativos executados simultaneamente em vários computadores." />
-                    <Label Style="{StaticResource MoneyLabel}" Text="Descrição do Trabalho" />
-                    <Label Style="{StaticResource JobTitleLabel}" Text="Implementar novas tecnologias de gerenciamento de servidores, fazer integração com ferramentas de VM." />
-                    <Label Style="{StaticResource MoneyLabel}" Text="Benefícios" />
-                    <Label Style="{StaticResource JobTitleLabel}" Text="Vale Transporte / Vale Alimentação" />
+                    <Label Style="{StaticResource TitlePrimary}" Text="Descrição da Empresa" />
+                    <Label Style="{StaticResource TextPrimary}" Text="A DigitalOcean, Inc. é uma provedora americana de infraestrutura em nuvem com sede na cidade de Nova York e data centers em todo o mundo. A DigitalOcean fornece aos desenvolvedores serviços em nuvem que ajudam a implantar e dimensionar aplicativos executados simultaneamente em vários computadores." />
+                    <Label Style="{StaticResource TitlePrimary}" Text="Descrição do Trabalho" />
+                    <Label Style="{StaticResource TextPrimary}" Text="Implementar novas tecnologias de gerenciamento de servidores, fazer integração com ferramentas de VM." />
+                    <Label Style="{StaticResource TitlePrimary}" Text="Benefícios" />
+                    <Label Style="{StaticResource TextPrimary}" Text="Vale Transporte / Vale Alimentação" />
                 </StackLayout>
             </ScrollView>
         </StackLayout>

@@ -32,7 +32,7 @@ namespace JobSearch.API.Controllers
 
             return _context.Jobs
                 .Where(x => 
-                    x.PublicationDate >= DateTime.Now.AddDays(-15) &&
+                    x.PublicationDate >= DateTime.Now.AddYears(-15) &&
                     x.CityState.ToLower().Contains(cityState.ToLower()) &&
                     (
                        x.JobTitle.ToLower().Contains(word.ToLower()) ||
