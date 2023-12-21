@@ -15,6 +15,8 @@
             
             <BoxView Color="#D7CCFF" HeightRequest="1" />
 
+            <Label x:Name="TxtMessages" TextColor="OrangeRed" />
+
             <Grid VerticalOptions="CenterAndExpand">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -28,16 +30,16 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <Frame StyleClass="EntryFrame" Grid.Row="0" Grid.ColumnSpan="2" >
-                    <Entry Placeholder="Email" />
+                    <Entry x:Name="TxtName" Placeholder="Nome" />
                 </Frame>
                 <Frame StyleClass="EntryFrame" Grid.Row="1" Grid.ColumnSpan="2" >
-                    <Entry Placeholder="Email" />
+                    <Entry x:Name="TxtEmail" Placeholder="Email" />
                 </Frame>
                 <Frame StyleClass="EntryFrame" Grid.Row="2" Grid.ColumnSpan="2" >
-                    <Entry Placeholder="Senha" />
+                    <Entry x:Name="TxtPassword" Placeholder="Senha" />
                 </Frame>
 
-                <Button Text="Salvar" Grid.Row="3" />
+                <Button Text="Salvar" Clicked="SaveAction" Grid.Row="3" />
             </Grid>
 
         </StackLayout>

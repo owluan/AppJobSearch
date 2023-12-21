@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
@@ -15,7 +14,10 @@ namespace JobSearch.App.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightNo;
+
             base.OnCreate(savedInstanceState);
+
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());

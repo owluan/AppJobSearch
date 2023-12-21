@@ -1,4 +1,5 @@
-﻿using JobSearch.App.Services;
+﻿using JobSearch.App.Models;
+using JobSearch.App.Services;
 using JobSearch.Domain.Models;
 using Newtonsoft.Json;
 using System;
@@ -6,9 +7,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using JobSearch.App.Resources.Load;
 
 namespace JobSearch.App.Views
 {
@@ -34,17 +36,28 @@ namespace JobSearch.App.Views
             string email = TxtEmail.Text;
             string password = TxtPassword.Text;
 
-            User user = await _userService.GetUser(email, password);
+            await Navigation.PushPopupAsync(new Loading());
 
-            if (user == null)
+            ResponseService<User> responseService = await _userService.GetUser(email, password);
+
+            if (responseService.IsSuccess)
             {
-                await DisplayAlert("Erro","Nenhum usuário encontrado!","OK");
+                App.Current.Properties.Add("User", JsonConvert.SerializeObject(responseService.Data));
+                await App.Current.SavePropertiesAsync();
+                App.Current.MainPage = new NavigationPage(new Initial());
             }
             else
-            {              
-                App.Current.Properties.Add("User", JsonConvert.SerializeObject(user));
-                App.Current.MainPage = new NavigationPage(new Initial());
-            }            
+            {                              
+                if (responseService.StatusCode == 404)
+                {
+                    await DisplayAlert("Erro", "Usuário ou senha incorretos!", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Erro", "Oops! Ocorreu um erro inesperado, tente novamente mais tarde.", "OK");
+                }
+            }
+            await Navigation.PopAllPopupAsync();
         }
     }
 }

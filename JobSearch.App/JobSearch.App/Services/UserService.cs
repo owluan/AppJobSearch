@@ -1,42 +1,55 @@
-﻿using JobSearch.Domain.Models;
-using System;
-using System.Collections.Generic;
+﻿using JobSearch.App.Models;
+using JobSearch.Domain.Models;
+using Newtonsoft.Json;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace JobSearch.App.Services
 {
     public class UserService : Service
     {
-        public async Task<User> GetUser(string email, string password)
+        public async Task<ResponseService<User>> GetUser(string email, string password)
         {
             HttpResponseMessage response = await _client.GetAsync($"{BaseApiUrl}/api/users?email={email}&password={password}");
 
-            User user = null;
+            ResponseService<User> responseService = new ResponseService<User>();
+
+            responseService.IsSuccess = response.IsSuccessStatusCode;
+            responseService.StatusCode = (int)response.StatusCode;
 
             if (response.IsSuccessStatusCode)
             {
-                user = await response.Content.ReadAsAsync<User>();
-            }
-
-            return user;
-        }
-
-        public async Task<User> AddUser(User user)
-        {
-            HttpResponseMessage response = await _client.PostAsJsonAsync($"{BaseApiUrl}/api/users", user);
-
-            if (response.IsSuccessStatusCode)
-            {
-                user = await response.Content.ReadAsAsync<User>();
+                responseService.Data = await response.Content.ReadAsAsync<User>();
             }
             else
             {
-                return null;
+                string problemResponse = await response.Content.ReadAsStringAsync();
+                var erros = JsonConvert.DeserializeObject<ResponseService<User>>(problemResponse);
+                responseService.Errors = erros.Errors;
             }
+            return responseService;
+        }
 
-            return user;
+        public async Task<ResponseService<User>> AddUser(User user)
+        {
+            HttpResponseMessage response = await _client.PostAsJsonAsync($"{BaseApiUrl}/api/users", user);
+
+            ResponseService<User> responseService = new ResponseService<User>();
+
+            responseService.IsSuccess = response.IsSuccessStatusCode;
+            responseService.StatusCode = (int)response.StatusCode;
+
+            if (response.IsSuccessStatusCode)
+            {
+                responseService.Data = await response.Content.ReadAsAsync<User>();
+            }
+            else
+            {
+                string problemResponse = await response.Content.ReadAsStringAsync();
+                var erros = JsonConvert.DeserializeObject<ResponseService<User>>(problemResponse);
+                responseService.Errors = erros.Errors;
+            }
+            return responseService;
         }
     }
 }
