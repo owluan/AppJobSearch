@@ -19,10 +19,10 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <Frame StyleClass="EntryFrame" Grid.Row="0" Grid.ColumnSpan="2" >
-                    <Entry x:Name="TxtEmail" Placeholder="Email" />
+                    <Entry x:Name="TxtEmail" Placeholder="Email" ReturnType="Next" />
                 </Frame>
                 <Frame StyleClass="EntryFrame" Grid.Row="1" Grid.ColumnSpan="2" >
-                    <Entry IsPassword="True" x:Name="TxtPassword" Placeholder="Senha" />
+                    <Entry IsPassword="True" x:Name="TxtPassword" Placeholder="Senha" ReturnType="Done" />
                 </Frame>
                 
                 <Button Text="Acessar" Clicked="GoInitial" Grid.Row="2" />

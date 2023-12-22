@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobSearch.API.Migrations
 {
     [DbContext(typeof(JobSearchContext))]
-    [Migration("20230114181309_PrimeiraMigration")]
-    partial class PrimeiraMigration
+    [Migration("20231221233748_AlterandoSalary")]
+    partial class AlterandoSalary
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,6 +42,12 @@ namespace JobSearch.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<double>("FinalSalary")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("InitialSalary")
+                        .HasColumnType("REAL");
+
                     b.Property<string>("InterestedSendEmailTo")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -56,9 +62,6 @@ namespace JobSearch.API.Migrations
 
                     b.Property<DateTime>("PublicationDate")
                         .HasColumnType("TEXT");
-
-                    b.Property<double>("Salary")
-                        .HasColumnType("REAL");
 
                     b.Property<string>("TecnologyTools")
                         .IsRequired()

@@ -28,8 +28,6 @@ namespace JobSearch.API.Controllers
             if (cityState == null)
                 cityState = string.Empty;
 
-
-
             return _context.Jobs
                 .Where(x => 
                     x.PublicationDate >= DateTime.Now.AddYears(-15) &&
@@ -43,7 +41,6 @@ namespace JobSearch.API.Controllers
                 .Skip(recordsPerPage * (pageNumber - 1))
                 .Take(recordsPerPage)
                 .ToList<Job>();
-
         }
 
         [HttpGet("{id}")]

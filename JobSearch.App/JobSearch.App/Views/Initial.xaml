@@ -7,10 +7,12 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
+                    <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="100" />
                 </Grid.ColumnDefinitions>
                 <Label Text="JobSearch" Style="{StaticResource Title}" />
-                <Button Text="+Add Job" StyleClass="AddButton" Clicked="GoRegisterJob" Grid.Column="1" />
+                <Button Grid.Column="1" ImageSource="logout.png" StyleClass="AddButton" HeightRequest="35" Clicked="Logout" />
+                <Button Grid.Column="2" Text="+Add Job" StyleClass="AddButton" Clicked="GoRegisterJob" />
             </Grid>
             
             <BoxView Color="#D7CCFF" HeightRequest="1" />

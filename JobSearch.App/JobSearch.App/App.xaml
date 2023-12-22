@@ -128,10 +128,10 @@
                 <Setter Property="HorizontalOptions" Value="End" />
                 <Setter Property="VerticalOptions" Value="End" />
             </Style>
-            
+
             <!-- Icones -->
             <Style TargetType="ImageButton" Class="SearchButton">
-                <Setter Property="BackgroundColor" Value="Transparent" />                
+                <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="WidthRequest" Value="20" />
                 <Setter Property="HorizontalOptions" Value="Start" />
                 <Setter Property="Source">
@@ -143,7 +143,7 @@
             </Style>
 
             <Style TargetType="ImageButton" Class="PinButton">
-                <Setter Property="BackgroundColor" Value="Transparent" />                
+                <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="WidthRequest" Value="20" />
                 <Setter Property="HorizontalOptions" Value="Start" />
                 <Setter Property="Source">
@@ -152,6 +152,19 @@
                         <On Platform="UWP" Value="Images/pin.png" />
                     </OnPlatform>
                 </Setter>
+            </Style>
+
+            <Style TargetType="Label" x:Key="RadioButton">
+                <Setter Property="TextColor" Value="{StaticResource DarkGrayBlue}" />
+                <Setter Property="FontFamily" Value="Montserrat" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="LabelEntry">
+                <Setter Property="Padding" Value="5, 11" />
+                <Setter Property="TextColor" Value="{StaticResource DarkGrayBlue}" />
+                <Setter Property="FontFamily" Value="Montserrat" />
+                <Setter Property="FontSize" Value="12" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>
