@@ -6,37 +6,54 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace JobSearch.App.Services
 {
     public class JobService : Service
     {
-        public async Task<IEnumerable<Job>> GetJobs(string word, string cityState, int numberOfPage = 1)
+        public async Task<ResponseService<List<Job>>> GetJobs(string word, string cityState, int pageNumber = 1)
         {
-            HttpResponseMessage response = await _client.GetAsync($"{BaseApiUrl}/api/jobs?word={word}&cityState={cityState}&numberOfPage={numberOfPage}");
+            HttpResponseMessage response = await _client.GetAsync($"{BaseApiUrl}/api/jobs?word={word}&cityState={cityState}&pageNumber={pageNumber}");
+                      
+            ResponseService<List<Job>> responseService = new ResponseService<List<Job>>();
 
-            List<Job> jobs = null;
+            responseService.IsSuccess = response.IsSuccessStatusCode;
+            responseService.StatusCode = (int)response.StatusCode;
 
             if (response.IsSuccessStatusCode)
             {
-                jobs = await response.Content.ReadAsAsync<List<Job>>();
+                responseService.Data = await response.Content.ReadAsAsync<List<Job>>();
             }
-
-            return jobs;
+            else
+            {
+                string problemResponse = await response.Content.ReadAsStringAsync();
+                var erros = JsonConvert.DeserializeObject<ResponseService<List<Job>>>(problemResponse);
+                responseService.Errors = erros.Errors;
+            }
+            return responseService;
         }
 
-        public async Task<Job> GetJob(int id)
+        public async Task<ResponseService<Job>> GetJob(int id)
         {
             HttpResponseMessage response = await _client.GetAsync($"{BaseApiUrl}/api/jobs/{id}");
 
-            Job job = null;
+            ResponseService<Job> responseService = new ResponseService<Job>();
+
+            responseService.IsSuccess = response.IsSuccessStatusCode;
+            responseService.StatusCode = (int)response.StatusCode;
 
             if (response.IsSuccessStatusCode)
             {
-                job = await response.Content.ReadAsAsync<Job>();
+                responseService.Data = await response.Content.ReadAsAsync<Job>();
             }
-
-            return job;
+            else
+            {
+                string problemResponse = await response.Content.ReadAsStringAsync();
+                var erros = JsonConvert.DeserializeObject<ResponseService<Job>>(problemResponse);
+                responseService.Errors = erros.Errors;
+            }
+            return responseService;            
         }
 
         public async Task<ResponseService<Job>> AddJob(Job job)
