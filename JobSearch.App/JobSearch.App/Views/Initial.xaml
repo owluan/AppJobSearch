@@ -67,28 +67,31 @@
                     <DataTemplate>
                         <Frame BorderColor="{StaticResource GrayBlue}" Padding="15" Margin="4" HasShadow="True">
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="GoVisualizer" />
+                                <TapGestureRecognizer Tapped="GoVisualizer" CommandParameter="{Binding .}" />
                             </Frame.GestureRecognizers>
                             <Grid RowSpacing="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="3*" />
-                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="2*" />
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="28" />
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="25" />
                                 </Grid.RowDefinitions>
-                                <Label Text="Digital Ocean" Style="{StaticResource TextSecondary}" Grid.ColumnSpan="2" />
-                                <Label Text="Back-End Developer" Style="{StaticResource TextPrimary}" Grid.Row="1" />
-                                <Label Text="Maceió, AL" Style="{StaticResource TextSecondary}" Grid.Row="2" />
+                                <Label Text="{Binding Company}" Style="{StaticResource TextSecondary}" Grid.ColumnSpan="2" />
+                                <Label Text="{Binding JobTitle}" Style="{StaticResource TextPrimary}" Grid.Row="1" />
+                                <Label Text="{Binding CityState}" Style="{StaticResource TextSecondary}" Grid.Row="2" />
                                 <Label Text="Tags" Grid.Row="3" />
 
-                                <Label Grid.Row="1" Grid.Column="1">
+                                <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="End" HorizontalTextAlignment="End">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="7-11k" Style="{StaticResource MoneyLabel}" />
+                                            <Span Text="{Binding InitialSalary}" Style="{StaticResource MoneyLabel}" />
+                                            <Span Text=" - " Style="{StaticResource CurrencyLabel}" />
+                                            <Span Text="{Binding FinalSalary}" Style="{StaticResource MoneyLabel}" />
+                                            <Span Text="&#x0a;" Style="{StaticResource CurrencyLabel}" />
                                             <Span Text=" BRL" Style="{StaticResource CurrencyLabel}" />
                                         </FormattedString>
                                     </Label.FormattedText>
@@ -98,7 +101,7 @@
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="id. " />
-                                            <Span Text="007007" />
+                                            <Span Text="{Binding Id}" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
