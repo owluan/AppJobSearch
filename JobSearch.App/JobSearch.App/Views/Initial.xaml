@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="JobSearch.App.Views.Initial">
     <ContentPage.Content>
         <StackLayout>
@@ -14,7 +15,7 @@
                 <Button Grid.Column="1" ImageSource="logout.png" StyleClass="AddButton" HeightRequest="35" Clicked="Logout" />
                 <Button Grid.Column="2" Text="+Add Job" StyleClass="AddButton" Clicked="GoRegisterJob" />
             </Grid>
-            
+
             <BoxView Color="#D7CCFF" HeightRequest="1" />
 
             <Grid Margin="0, 10, 0, 10" VerticalOptions="Start" HeightRequest="140">
@@ -34,8 +35,8 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <ImageButton Source="search.png" StyleClass="SearchButton" Clicked="FocusSearch" />
-                        <Entry Placeholder="Pesquisa" Grid.Column="1" x:Name="TxtWord" />
-                    </Grid>                    
+                        <Entry Placeholder="Pesquisar" Grid.Column="1" x:Name="TxtWord" />
+                    </Grid>
                 </Frame>
                 <Frame StyleClass="EntryFrame" Grid.Row="1">
                     <Grid>
@@ -65,51 +66,53 @@
                 </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame BorderColor="{StaticResource GrayBlue}" Padding="15" Margin="4" HasShadow="True">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="GoVisualizer" CommandParameter="{Binding .}" />
-                            </Frame.GestureRecognizers>
-                            <Grid RowSpacing="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="3*" />
-                                    <ColumnDefinition Width="2*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="25" />
-                                    <RowDefinition Height="28" />
-                                    <RowDefinition Height="25" />
-                                    <RowDefinition Height="25" />
-                                </Grid.RowDefinitions>
-                                <Label Text="{Binding Company}" Style="{StaticResource TextSecondary}" Grid.ColumnSpan="2" />
-                                <Label Text="{Binding JobTitle}" Style="{StaticResource TextPrimary}" Grid.Row="1" />
-                                <Label Text="{Binding CityState}" Style="{StaticResource TextSecondary}" Grid.Row="2" />
-                                <Label Text="Tags" Grid.Row="3" />
+                        <StackLayout>
+                            <pancake:PancakeView BackgroundColor="{StaticResource White}" BorderColor="{StaticResource GrayBlue}" Padding="15" Margin="4" Elevation="3">
+                                <pancake:PancakeView.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="GoVisualizer" CommandParameter="{Binding .}"/>
+                                </pancake:PancakeView.GestureRecognizers>
+                                <Grid RowSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="28" />
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                    </Grid.RowDefinitions>
+                                    <Label Text="{Binding Company}" Style="{StaticResource TextSecondary}" Grid.ColumnSpan="2" />
+                                    <Label Text="{Binding JobTitle}" Style="{StaticResource TextPrimary}" Grid.Row="1" />
+                                    <Label Text="{Binding CityState}" Style="{StaticResource TextSecondary}" Grid.Row="2" />
+                                    <Label Text="Tags" Grid.Row="3" />
 
-                                <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="End" HorizontalTextAlignment="End">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="{Binding InitialSalary}" Style="{StaticResource MoneyLabel}" />
-                                            <Span Text=" - " Style="{StaticResource CurrencyLabel}" />
-                                            <Span Text="{Binding FinalSalary}" Style="{StaticResource MoneyLabel}" />
-                                            <Span Text="&#x0a;" Style="{StaticResource CurrencyLabel}" />
-                                            <Span Text=" BRL" Style="{StaticResource CurrencyLabel}" />
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
+                                    <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="End" HorizontalTextAlignment="End">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding InitialSalary}" Style="{StaticResource MoneyLabel}" />
+                                                <Span Text=" - " Style="{StaticResource CurrencyLabel}" />
+                                                <Span Text="{Binding FinalSalary}" Style="{StaticResource MoneyLabel}" />
+                                                <Span Text="&#x0a;" Style="{StaticResource CurrencyLabel}" />
+                                                <Span Text=" BRL" Style="{StaticResource CurrencyLabel}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
 
-                                <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource IdLabel}">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="id. " />
-                                            <Span Text="{Binding Id}" />
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                            </Grid>
-                        </Frame>
+                                    <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource IdLabel}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="id. " />
+                                                <Span Text="{Binding Id}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Grid>
+                            </pancake:PancakeView>
+                        </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-            </CollectionView>         
+            </CollectionView>
 
         </StackLayout>
     </ContentPage.Content>
