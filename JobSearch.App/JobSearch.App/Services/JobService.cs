@@ -3,6 +3,7 @@ using JobSearch.Domain.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace JobSearch.App.Services
         public async Task<ResponseService<List<Job>>> GetJobs(string word, string cityState, int pageNumber = 1)
         {
             HttpResponseMessage response = await _client.GetAsync($"{BaseApiUrl}/api/jobs?word={word}&cityState={cityState}&pageNumber={pageNumber}");
-                      
+
             ResponseService<List<Job>> responseService = new ResponseService<List<Job>>();
 
             responseService.IsSuccess = response.IsSuccessStatusCode;
@@ -24,6 +25,13 @@ namespace JobSearch.App.Services
             if (response.IsSuccessStatusCode)
             {
                 responseService.Data = await response.Content.ReadAsAsync<List<Job>>();
+
+                var pagination = new Pagination()
+                {
+                    IsPagination = true,
+                    TotalItems = int.Parse(response.Headers.GetValues("X-Total-Items").FirstOrDefault())
+                };
+                responseService.Pagination = pagination;
             }
             else
             {
@@ -53,7 +61,7 @@ namespace JobSearch.App.Services
                 var erros = JsonConvert.DeserializeObject<ResponseService<Job>>(problemResponse);
                 responseService.Errors = erros.Errors;
             }
-            return responseService;            
+            return responseService;
         }
 
         public async Task<ResponseService<Job>> AddJob(Job job)
